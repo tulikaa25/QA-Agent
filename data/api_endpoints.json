@@ -1,0 +1,83 @@
+{
+  "api_version": "v1",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/apply_coupon",
+      "description": "Applies a discount code to the current cart.",
+      "request": {
+        "fields": {
+          "code": {
+            "type": "string",
+            "required": true,
+            "description": "The discount code (e.g., SAVE15)."
+          }
+        }
+      },
+      "response_success": {
+        "status_code": 200,
+        "fields": {
+          "discount_amount": {
+            "type": "float",
+            "description": "The dollar value of the discount applied."
+          },
+          "new_subtotal": {
+            "type": "float",
+            "description": "The subtotal after the discount."
+          }
+        }
+      },
+      "response_failure": {
+        "status_code": 400,
+        "fields": {
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/submit_order",
+      "description": "Submits the user details, payment choice, and final order for processing.",
+      "request": {
+        "fields": {
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "email": {
+            "type": "string",
+            "required": true
+          },
+          "address": {
+            "type": "string",
+            "required": true
+          },
+          "shipping_method": {
+            "type": "string",
+            "required": true,
+            "enum": ["Standard", "Express"]
+          },
+          "payment_method": {
+            "type": "string",
+            "required": true,
+            "enum": ["CreditCard", "PayPal"]
+          }
+        }
+      },
+      "response_success": {
+        "status_code": 201,
+        "fields": {
+          "order_id": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "value": "Payment Successful!"
+          }
+        }
+      }
+    }
+  ]
+}

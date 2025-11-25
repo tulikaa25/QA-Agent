@@ -1,0 +1,179 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Shop Checkout</title>
+</head>
+<body>
+    <h1>Checkout Page</h1>
+
+    <div id="cart_summary">
+        <h2>Order Items</h2>
+        <div class="cart-item" data-product-id="P001">
+            <span class="item-name">The QA Handbook</span>
+            <input type="number" id="qty_P001" class="item-quantity-input" value="1" min="1">
+            <span class="item-price" data-unit-price="25.00">$25.00</span>
+        </div>
+        <button id="add_item_P002" class="add-to-cart-btn">Add 'Dev Kit' ($50.00)</button>
+        <hr>
+        <label for="discount_input">Discount Code:</label>
+        <input type="text" id="discount_input" placeholder="Enter code">
+        <button id="apply_discount_btn">Apply</button>
+        <p>Subtotal: <span id="subtotal_value">$75.00</span></p>
+    </div>
+
+    <div id="shipping_section">
+        <h3>Shipping Method</h3>
+        <input type="radio" name="shipping_option" id="ship_standard" value="Standard" checked>
+        <label for="ship_standard">Standard Shipping (Free)</label><br>
+        <input type="radio" name="shipping_option" id="ship_express" value="Express">
+        <label for="ship_express">Express Shipping ($10.00)</label>
+        <p>Total Due: <span id="final_total_value">$75.00</span></p>
+    </div>
+
+    <form id="user_details_form">
+        <h2>Your Details</h2>
+        <label for="name_input">Full Name:</label>
+        <input type="text" id="name_input" class="required-field"><br>
+
+        <label for="email_input">Email:</label>
+        <input type="email" id="email_input" class="required-field">
+        <span id="email_error" class="validation-error"></span><br>
+
+        <label for="address_input">Address:</label>
+        <input type="text" id="address_input" class="required-field"><br>
+    </form>
+
+    <div id="payment_section">
+        <h3>Payment Method</h3>
+        <input type="radio" name="payment_method" id="pay_cc" value="CreditCard">
+        <label for="pay_cc">Credit Card</label>
+        <input type="radio" name="payment_method" id="pay_pp" value="PayPal" checked>
+        <label for="pay_pp">PayPal</label><br><br>
+        
+        <button id="pay_now_btn" disabled>Pay Now</button>
+        <p id="payment_status" style="display: none;">Payment Successful!</p>
+    </div>
+
+</body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Shop Checkout</title>
+    <style>
+        /* (CSS styles from the previous response are omitted here for brevity, 
+           but they should be included in your final file.) */
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 900px; margin: 20px auto; background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #eee; }
+        .add-to-cart-btn { background-color: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; margin-top: 10px; margin-right: 10px;}
+        .summary-line { display: flex; justify-content: space-between; margin-top: 10px; }
+        .validation-error { color: red; font-size: 0.9em; display: none; }
+        #pay_now_btn { background-color: #6c757d; color: white; opacity: 0.6; cursor: not-allowed; }
+        #pay_now_btn.enabled { background-color: #28a745; opacity: 1; cursor: pointer; }
+        #payment_status { color: #28a745; font-weight: bold; display: none; }
+        input[type="text"], input[type="email"] { width: calc(100% - 22px); padding: 10px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>E-Shop Checkout</h1>
+
+        <div id="cart_summary_section" class="section">
+            <h2>Your Cart (1 Item)</h2>
+            <div id="item_P001" class="cart-item" data-product-id="P001">
+                <span class="item-name">The Essential QA Guide</span>
+                <input type="number" id="qty_P001" class="item-quantity-input" value="1" min="1" data-unit-price="25.00">
+                <span id="price_P001" class="item-price">$25.00</span>
+            </div>
+            
+            <hr>
+
+            <p>Add more items:</p>
+            <button id="add_item_P002_btn" class="add-to-cart-btn" data-product-id="P002">Add 'Automation Pro Kit' ($50.00)</button>
+            <button id="add_item_P003_btn" class="add-to-cart-btn" data-product-id="P003">Add 'Performance Tester' ($100.00)</button>
+
+            <hr>
+            
+            <div class="summary-line">
+                <span>Subtotal:</span>
+                <span id="subtotal_value">$25.00</span>
+            </div>
+
+            <label for="discount_input">Discount Code:</label>
+            <input type="text" id="discount_input" placeholder="Enter discount code">
+            <button id="apply_discount_btn">Apply Discount</button>
+            <div class="summary-line">
+                <span>Discount:</span>
+                <span id="discount_value">-$0.00</span>
+            </div>
+        </div>
+
+        <div id="shipping_section" class="section">
+            <h2>Shipping Method</h2>
+            <div class="radio-group">
+                <input type="radio" name="shipping_option" id="ship_standard" value="Standard" checked>
+                <label for="ship_standard">Standard Shipping (Free)</label>
+                <input type="radio" name="shipping_option" id="ship_express" value="Express">
+                <label for="ship_express">Express Shipping ($10.00)</label>
+            </div>
+            <div class="summary-line">
+                <span>Shipping Cost:</span>
+                <span id="shipping_cost_value">$0.00</span>
+            </div>
+        </div>
+
+        <form id="user_details_form" class="section">
+            <h2>Your Details</h2>
+            <label for="name_input">Full Name:</label>
+            <input type="text" id="name_input" class="required-field" placeholder="Rahul Mishra">
+            <span id="name_error" class="validation-error">Name is required.</span>
+
+            <label for="email_input">Email:</label>
+            <input type="email" id="email_input" class="required-field" placeholder="rahulmis@example.com">
+            <span id="email_error" class="validation-error">Invalid email format.</span>
+
+            <label for="address_input">Address:</label>
+            <input type="text" id="address_input" class="required-field" placeholder="123 Main St, Delhi">
+            <span id="address_error" class="validation-error">Address is required.</span>
+        </form>
+
+        <div id="payment_section" class="section">
+            <h2>Payment Method</h2>
+            <div class="radio-group">
+                <input type="radio" name="payment_method" id="pay_cc" value="CreditCard" checked>
+                <label for="pay_cc">Credit Card</label>
+                <input type="radio" name="payment_method" id="pay_pp" value="PayPal">
+                <label for="pay_pp">PayPal</label>
+            </div>
+            
+            <hr>
+            <div class="summary-line total-line">
+                <span>Total Due:</span>
+                <span id="final_total_value">$25.00</span>
+            </div>
+
+            <button id="pay_now_btn" disabled>Pay Now</button>
+            <p id="payment_status" style="display: none;">Payment Successful!</p>
+        </div>
+    </div>
+
+    <script>
+        // *** NOTE: The JavaScript logic would need to be updated to handle dynamically adding P002 and P003 items 
+        // when their buttons are clicked, updating the subtotal, and managing their new quantity inputs. ***
+        
+        // For the QA agent's purpose, the key is that these IDs exist:
+        // #add_item_P002_btn 
+        // #add_item_P003_btn
+    </script>
+</body>
+</html>

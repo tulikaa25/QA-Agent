@@ -1,0 +1,22 @@
+
+UI UX Guidelines for Checkout Form
+
+Element Locators
+The discount input field is precisely located by ID discount_input
+The button to apply the discount is located by ID apply_discount_btn
+The final Total Due value is displayed in the span with ID final_total_value
+The input for the The Essential QA Guide quantity is qty_P001
+
+Error Display
+The validation error message for the email field is shown in the span with ID email_error
+The validation error message for the name field is shown in the span with ID name_error
+The validation error message for the address field is shown in the span with ID address_error
+The CSS color of all validation-error text must be #FF0000 Pure Red when visible
+
+Payment Button State
+The Pay Now button #pay_now_btn must have the disabled attribute present by default
+When the button is enabled Rule V-3 from specs is met its background CSS color should be #28a745 Green
+
+Success Message
+The Payment Successful message is contained in the element with ID payment_status
+This element is initially hidden and must be made visible upon successful payment
