@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.log
+.env
+venv/
+
+# ChromaDB persistence directory
+chroma_db/
+qa_agent_project/chroma_db/
+
+# Temporary uploaded documents
+temp_docs/
+
+# Streamlit specific
+.streamlit/
