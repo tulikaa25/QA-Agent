@@ -1,0 +1,10 @@
+streamlit
+python-dotenv
+unstructured
+PyMuPDF
+langchain-text-splitters
+transformers
+torch
+chromadb
+google-generativeai
+selenium
