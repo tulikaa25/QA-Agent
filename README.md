@@ -49,7 +49,7 @@ This project is developed with Python 3.9+. It is recommended to use a virtual e
     ```bash
     pip install -r requirements.txt
     ```
-    (Note: If `requirements.txt` is not provided, you will need to infer the dependencies from `app.py`, `knowledge_base.py`, `parsers.py`, `test_case_agent.py`, and `selenium_agent.py` and install them manually. Key packages include `streamlit`, `python-dotenv`, `unstructured`, `pymupdf` (fitz), `langchain-text-splitters`, `transformers`, `torch`, `chromadb`, `google-generativeai`.)
+    All project dependencies are listed in the `requirements.txt` file.
 
 4.  **Set up Gemini API Key:**
     Create a `.env` file in the `qa_agent_project/` directory with your Gemini API key:
